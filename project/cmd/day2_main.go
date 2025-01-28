@@ -7,6 +7,6 @@ import (
 
 func main1() {
 	g := graph.NewGraph()
-	g.AddEdge(1,2,55,false)
+	g.AddEdge(1, 2, 55, false)
 	fmt.Println()
 }
