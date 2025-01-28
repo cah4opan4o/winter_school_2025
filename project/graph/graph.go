@@ -1,10 +1,13 @@
 package graph
 
+type Edge struct{
+	u, v, w int
+}
+
 type Graph struct {
 	// Список смежности
 	adj map[int][]int // Ключ - номер пользователя, значение - с кем рёбра
-	// При необходимости хранить веса:
-	// edges []Edge
+	edges []Edge
 }
 
 func NewGraph() *Graph {
@@ -22,6 +25,10 @@ func (g *Graph) Adj() map[int][]int {
 	return g.adj
 }
 
+func (g *Graph) Edges() []Edge{
+	return g.edges
+}
+
 func HasEdge(g *Graph, u, v int) bool {
 	for _, neighbor := range g.adj[u] {
 		if neighbor == v {
@@ -31,12 +38,20 @@ func HasEdge(g *Graph, u, v int) bool {
 	return false
 }
 
+func (g *Graph) GetAllEdges() []Edge {
+    var edges []Edge
+	for _, value := range g.Edges(){
+		if value.u < value.v{
+			edges = append(edges, Edge{value.u, value.v, value.w})
+		}
+	} 
+    return edges
+}
+
 func ConnectedComponents(g *Graph) (count int, comp map[int]int) {
-	// comp[v] = номер компоненты (1..count)
 	visited := make(map[int]bool)
 	comp = make(map[int]int)
 	count = 0
-
 	for v, _ := range g.Adj() {
 		if !visited[v] {
 			count++
