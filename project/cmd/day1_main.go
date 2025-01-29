@@ -5,7 +5,7 @@ import (
 	"winter_school_2025/project/graph"
 )
 
-func main() {
+func main2() {
 	g := graph.NewGraph()
 
 	g.AddEdge(0, 1, true)

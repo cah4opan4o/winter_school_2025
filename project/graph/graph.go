@@ -11,7 +11,7 @@ type Graph struct {
 }
 
 func NewGraph() *Graph {
-	return &Graph{adj: make(map[int][]int)}
+	return &Graph{adj: make(map[int][]int),edges: make([]Edge, 0)}
 }
 
 func (g *Graph) AddEdge(u, v int, undirected bool) {
